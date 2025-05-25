@@ -11,6 +11,8 @@ public:
     Labyrinth();
     bool isWall(int x, int y) const;
     bool isCoin(int x, int y) const;
+    bool isEnemy(int x, int y) const;
+    bool isFinish(int x, int y) const;
     void removeCoin(int x, int y);
     void reset(); // сбросить лабиринт к начальному состоянию
 
