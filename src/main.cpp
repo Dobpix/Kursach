@@ -13,12 +13,13 @@ GameServer server(&game);
 Joystick joystick;
 
 void setup() {
+    delay(2000);
     Serial.begin(9600);
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, password);
     Serial.print("Connecting to WiFi");
     while (WiFi.status() != WL_CONNECTED) {
-        delay(500);
+        delay(1000);
         Serial.print(".");
     }
     Serial.println("\nWiFi connected!");
