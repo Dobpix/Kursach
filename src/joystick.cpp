@@ -3,25 +3,37 @@
 #define X_PIN 39
 #define Y_PIN 36
 
+int lastDirection = 0;  // глобальная переменная для хранения предыдущего направления
+
 int Joystick::processing() {
     int x = analogRead(X_PIN);
     int y = analogRead(Y_PIN);
 
-    if (y == 0) {
-        Serial.println("forward");
-        return 1;
+    int currentDir = 0;
+
+    if (y == 0 && x < 2000 && x > 1800) {
+        currentDir = 1; // forward
     }
-    if (y == 4095) {
-        Serial.println("backward");
-        return 2;
+    else if (y == 4095 && x < 2000 && x > 1800) {
+        currentDir = 2; // backward
     }
-    if (x == 0) {
-        Serial.println("left");
-        return 3;
+    else if (x == 0 && y < 2000 && y > 1800) {
+        currentDir = 3; // left
     }
-    if (x == 4095) {
-        Serial.println("right");
-        return 4;
+    else if (x == 4095 && y < 2000 && y > 1800) {
+        currentDir = 4; // right
     }
+
+    if (currentDir != lastDirection) {
+        lastDirection = currentDir;
+        switch (currentDir) {
+            case 1: Serial.println("forward"); break;
+            case 2: Serial.println("backward"); break;
+            case 3: Serial.println("left"); break;
+            case 4: Serial.println("right"); break;
+        }
+        return currentDir;
+    }
+
     return 0;
 }

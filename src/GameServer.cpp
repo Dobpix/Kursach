@@ -34,7 +34,7 @@ void GameServer::handleNotFound() {
 String GameServer::generateHTML() {
     Player* player = game->getPlayer();
     Labyrinth* lab = game->getLabyrinth();
-    String html = "<html><head><meta charset='utf-8'><title>Maze Game</title></head><body>";
+    String html = "<html><head><meta charset='utf-8'><meta http-equiv='refresh' content='2'><title>Maze Game</title></head><body>";
     html += "<h2>Maze Game</h2>";
     html += "<p>Score: " + String(player->getScore()) + "</p>";
     html += "<table border='1' cellpadding='3' cellspacing='0'>";
