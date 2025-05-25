@@ -1,24 +1,24 @@
-#include "server.h"
+#include "GameServer.h"
 
-Server::Server(Game* game, uint16_t port)
+GameServer::GameServer(Game* game, uint16_t port)
     : webServer(port), game(game) {}
 
-void Server::begin() {
+void GameServer::begin() {
     webServer.on("/", [this]() { handleRoot(); });
     webServer.on("/move", [this]() { handleMove(); });
     webServer.onNotFound([this]() { handleNotFound(); });
     webServer.begin();
 }
 
-void Server::handleClient() {
+void GameServer::handleClient() {
     webServer.handleClient();
 }
 
-void Server::handleRoot() {
+void GameServer::handleRoot() {
     webServer.send(200, "text/html", generateHTML());
 }
 
-void Server::handleMove() {
+void GameServer::handleMove() {
     if (webServer.hasArg("dir")) {
         int dir = webServer.arg("dir").toInt();
         game->step(dir);
@@ -27,11 +27,11 @@ void Server::handleMove() {
     webServer.send(303);
 }
 
-void Server::handleNotFound() {
+void GameServer::handleNotFound() {
     webServer.send(404, "text/plain", "Not found");
 }
 
-String Server::generateHTML() {
+String GameServer::generateHTML() {
     Player* player = game->getPlayer();
     Labyrinth* lab = game->getLabyrinth();
     String html = "<html><head><meta charset='utf-8'><title>Maze Game</title></head><body>";

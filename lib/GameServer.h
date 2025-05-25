@@ -1,12 +1,12 @@
-#ifndef SERVER_H
-#define SERVER_H
+#ifndef GAMESERVER_H
+#define GAMESERVER_H
 
 #include <WebServer.h>
 #include "game.h"
 
-class Server {
+class GameServer {
 public:
-    Server(Game* game, uint16_t port = 80);
+    GameServer(Game* game, uint16_t port = 80);
     void begin();
     void handleClient();
 

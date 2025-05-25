@@ -1,18 +1,19 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include "game.h"
-#include "server.h"
+#include "GameServer.h" 
+#include "joystick.h"
 
 // Задайте свои данные WiFi
-const char* ssid = "Buza5"; // Введите SSID вашей сети
+const char* ssid = "Buza5";
 const char* password = "+79051833394";
 
 Game game;
-Server server(&game);
+GameServer server(&game); 
+Joystick joystick;
 
 void setup() {
     Serial.begin(9600);
-    // Подключение к WiFi
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, password);
     Serial.print("Connecting to WiFi");
