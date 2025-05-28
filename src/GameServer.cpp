@@ -42,7 +42,7 @@ String GameServer::generateHTML() {
         html += "<tr>";
         for (int j = 0; j < COLS; j++) {
             String cell;
-            if (player->getX() == i && player->getY() == j) cell = "🧑";
+            if (player->getX() == i && player->getY() == j) cell = "👶🏾";
             else if (lab->isWall(i, j)) cell = "⬛";
             else if (lab->isCoin(i, j)) cell = "🟡";
             else if (lab->isEnemy(i, j)) cell = "👾";
